@@ -6,7 +6,7 @@
 /*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 11:41:12 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/14 12:23:44 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/14 15:50:22 by saalagor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 /* --- Libraries --- */
-#include "libft.h"
+#include "libft/libft.h"
 
 /* --- Macro Definitions --- */
 # define INT_MAX 2147483647
