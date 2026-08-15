@@ -6,87 +6,91 @@
 /*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 08:57:25 by wchan-ha          #+#    #+#             */
-/*   Updated: 2026/08/14 10:37:28 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/15 08:36:11 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 
-void	ra(a_list	**a)
+void	ra(t_stack	**a)
 {
-	a_list	*first;
-	a_list	*last;
+	t_stack	*last;
+	t_stack	*first;
 
 	if (!a || !*a || (*a)->next)
 		return ;
 	last = *a;
 	first = *a;
 	*a = (*a)->next;
+	*a->prev = NULL;
 	while (last->next)
 		last = last->next;
 	last->next = first;
+	first->prev = last;
 	first->next = NULL;
 }
 
-void	rb(a_list	**b)
+void	rb(t_stack	**b)
 {
-	b_list	*first;
-	b_list	*last;
+	t_stack	*first;
+	t_stack	*last;
 
 	if (!b || !*b || (*b)->next)
 		return ;
 	last = *b;
 	first = *b;
 	*b = (*b)->next;
+	*b->previous = NULL;
 	while (last->next)
 		last = last->next;
 	last->next = first;
+	first->prev = last;
 	first->next = NULL;
 }
 
-void	rr(a_list **a, a_list **b)
+void	rr(t_stack **a, t_stack **b)
 {
 	ra(a);
 	rb(b);
 }
 
-void	rra(ab_list	**a)
+void	rra(t_stack	**a)
 {
-	ab_list	last;
+	t_stack	*last;
+	t_stack	*second_last;
 
 	if (!a || !*a || !(*a)->next)
 		return ;
 	last = *a;
-	while (last->next->next)
-	{
-		last = last->next;
-	}
-	*a = last->next;
-	last->next = NULL;
+	second_last = *a;
+	while (second_last->next->next)
+		second_last = second_last->next;
+	last = second_last->next;
+	*a->prev = last;
+	last->pre = NULL;
+	last->next = *a;
+	second_last->next = NULL;
 }
 
-void	rrb(ab_list	**b)
+void	rrb(t_stack	**b)
 {
-	ab_list	last;
+	t_stack	*last;
+	t_stack	*second_last;
 
 	if (!b || !*b || !(*b)->next)
 		return ;
 	last = *b;
-	while (last->next->next)
-	{
-		last = last->next;
-	}
-	*b = last->next;
-	last->next = NULL;
-}
+	second_last = *b;
+	while (second_last->next->next)
+		second_last = second_last->next;
+	last = second_last->next;
+	second_last->next = NULL;
+	(*a)->prev = last;
+	last->prev = NULL;
+	last->next = *a;;
 
-void	rrr(ab_list **a, ab_list **b)
+void	rrr(t_stack **a, t_stack **b)
 {
 	rra(a);
 	rrb(b);
 }
-
-
-
-
-
