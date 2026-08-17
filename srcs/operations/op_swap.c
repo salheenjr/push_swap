@@ -6,11 +6,11 @@
 /*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 17:26:45 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/14 17:41:16 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/15 21:11:37 by saalagor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../push_swap.h"
 
 void    swap(t_stack **stack)
 {
