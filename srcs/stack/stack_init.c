@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
+/*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 17:10:00 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/15 18:33:10 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/17 15:55:11 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	init_stack_a(t_stack **a, char **argv)
 	int		i;
 	long	value;
 
-	i = 0;
+	i = 1;
 	while (argv[i])
 	{
 		if (!is_number(argv[i]))
