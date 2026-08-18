@@ -6,7 +6,7 @@
 /*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 16:12:14 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/15 17:09:37 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/17 20:36:24 by saalagor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_stack	*ft_stacknew(int value)
 	return (node);
 }
 
-t_stack *ft_stacklast(t_stack *stack)
+t_stack	*ft_stacklast(t_stack *stack)
 {
 	if (!stack)
 		return (NULL);
@@ -37,7 +37,7 @@ t_stack *ft_stacklast(t_stack *stack)
 
 void	ft_stackadd_back(t_stack **stack, t_stack *new_node)
 {
-	t_stack *last_node;
+	t_stack	*last_node;
 
 	if (!stack || !new_node)
 		return ;

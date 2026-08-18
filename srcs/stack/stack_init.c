@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saalagor <saalagor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/15 17:10:00 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/17 15:55:11 by wchan-ha         ###   ########.fr       */
+/*   Created: 2026/08/15 17:10:00 by saalagor            #+#    #+#             */
+/*   Updated: 2026/08/18 14:07:21 by saalagor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,34 +71,31 @@ int	has_duplicate(t_stack *a, int n)
 	return (0);
 }
 
+static void	free_and_exit(t_stack **a)
+{
+	ft_free_stack(a);
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
+}
+
 void	init_stack_a(t_stack **a, char **argv)
 {
 	t_stack	*new_node;
-	int		i;
 	long	value;
+	int		i;
 
 	i = 1;
 	while (argv[i])
 	{
 		if (!is_number(argv[i]))
-		{
-			ft_free_stack(a);
-			write(2, "Error\n", 6);
-			exit(EXIT_FAILURE);
-		}
+			free_and_exit(a);
 		value = ft_atol(argv[i]);
-		if (value < INT_MIN || value > INT_MAX || has_duplicate(*a, (int)value))
-		{
-			ft_free_stack(a);
-			write(2, "Error\n", 6);
-			exit(EXIT_FAILURE);
-		}
+		if (value < INT_MIN || value > INT_MAX
+			|| has_duplicate(*a, (int)value))
+			free_and_exit(a);
 		new_node = ft_stacknew((int)value);
 		if (!new_node)
-		{
-			ft_free_stack(a);
-			exit(EXIT_FAILURE);
-		}
+			free_and_exit(a);
 		ft_stackadd_back(a, new_node);
 		i++;
 	}
