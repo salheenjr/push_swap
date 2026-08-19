@@ -1,0 +1,8 @@
+-- Updates --
+
+Chan Hao -- 19 - 8 - 2026
+
+1. sort_complex write out the complex algo structure
+2. start for this function
+3. push_swap.h file linked-list structure added unsorted_index;
+4. README file for resources

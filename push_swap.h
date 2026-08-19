@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
+/*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 11:41:12 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/18 13:58:08 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/19 08:52:20 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_stack
 {
 	int				value;
 	int				index;
+	int				unsorted_index;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }	t_stack;
