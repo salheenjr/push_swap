@@ -6,7 +6,7 @@
 /*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 14:21:44 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/17 17:46:17 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/18 19:17:54 by saalagor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,31 @@ double	get_disorder(t_stack *a)
 	return (inversions / total_pairs);
 }
 
-void	sort_adaptive(t_stack **a, t_stack **b)
+void	sort_adaptive(t_stack **a, t_stack **b, t_bench *bench)
 {
 	double	disorder;
 
 	if (!a || !*a || is_sorted(*a))
 		return ;
 	disorder = get_disorder(*a);
+	if (bench)
+		bench->disorder = disorder;
 	if (disorder < 0.2)
-		sort_simple(a, b);
+	{
+		if (bench)
+			bench->strat_name = "Adaptive (Simple)";
+		sort_simple(a, b, bench);
+	}
 	else if (disorder < 0.5)
-		sort_medium(a, b);
+	{
+		if (bench)
+			bench->strat_name = "Adaptive (Medium)";
+		sort_medium(a, b, bench);
+	}
 	else
-		sort_complex(a, b);
+	{
+		if (bench)
+			bench->strat_name = "Adaptive (Complex)";
+		sort_complex(a, b, bench);
+	}
 }

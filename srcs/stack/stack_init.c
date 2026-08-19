@@ -3,100 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saalagor <saalagor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/15 17:10:00 by saalagor            #+#    #+#             */
-/*   Updated: 2026/08/18 14:07:21 by saalagor         ###   ########.fr       */
+/*   Created: 2026/08/18 15:36:23 by saalagor          #+#    #+#             */
+/*   Updated: 2026/08/18 17:52:51 by saalagor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-long	ft_atol(const char *str)
-{
-	long	num;
-	int		sign;
-	int		i;
-
-	i = 0;
-	num = 0;
-	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
-	if (str[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
-	else if (str[i] == '+')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		num = (num * 10) + (str[i] - '0');
-		i++;
-	}
-	return (num * sign);
-}
-
-int	is_number(char *str)
+static void	free_split(char **split)
 {
 	int	i;
 
-	if (!str)
-		return (0);
+	if (!split)
+		return ;
 	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	if (!str[i])
-		return (0);
-	while (str[i])
+	while (split[i])
 	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (0);
+		free(split[i]);
 		i++;
 	}
-	return (1);
+	free(split);
 }
 
-int	has_duplicate(t_stack *a, int n)
+static void	parse_error(t_stack **a, char **split)
 {
-	if (!a)
-		return (0);
-	while (a)
-	{
-		if (a->value == n)
-			return (1);
-		a = a->next;
-	}
-	return (0);
-}
-
-static void	free_and_exit(t_stack **a)
-{
+	if (split)
+		free_split(split);
 	ft_free_stack(a);
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
 
+static void	process_arg(t_stack **a, char *str, char **split)
+{
+	long	val;
+	t_stack	*node;
+
+	if (!is_number(str))
+		parse_error(a, split);
+	val = ft_atol(str);
+	if (val < INT_MIN || val > INT_MAX || has_duplicate(*a, (int)val))
+		parse_error(a, split);
+	node = ft_stacknew((int)val);
+	if (!node)
+		parse_error(a, split);
+	ft_stackadd_back(a, node);
+}
+
 void	init_stack_a(t_stack **a, char **argv)
 {
-	t_stack	*new_node;
-	long	value;
 	int		i;
+	int		j;
+	char	**split;
 
-	i = 1;
+	i = 0;
 	while (argv[i])
 	{
-		if (!is_number(argv[i]))
-			free_and_exit(a);
-		value = ft_atol(argv[i]);
-		if (value < INT_MIN || value > INT_MAX
-			|| has_duplicate(*a, (int)value))
-			free_and_exit(a);
-		new_node = ft_stacknew((int)value);
-		if (!new_node)
-			free_and_exit(a);
-		ft_stackadd_back(a, new_node);
+		split = ft_split(argv[i], ' ');
+		if (!split || !split[0])
+			parse_error(a, split);
+		j = 0;
+		while (split[j])
+		{
+			process_arg(a, split[j], split);
+			j++;
+		}
+		free_split(split);
 		i++;
 	}
+	assign_index(*a);
 }

@@ -6,7 +6,7 @@
 /*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 17:27:54 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/15 21:12:15 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/18 18:40:27 by saalagor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,28 @@ static void	push(t_stack **dest, t_stack **src)
 	*dest = node_to_move;
 }
 
-void	pa(t_stack **a, t_stack **b)
+void	pa(t_stack **a, t_stack **b, t_bench *bench)
 {
+	if (!b || !*b)
+		return ;
 	push(a, b);
-	ft_printf("pa\n");
+	write(1, "pa\n", 3);
+	if (bench)
+	{
+		bench->pa_count++;
+		bench->total_ops++;
+	}
 }
 
-void	pb(t_stack **a, t_stack **b)
+void	pb(t_stack **a, t_stack **b, t_bench *bench)
 {
+	if (!a || !*a)
+		return ;
 	push(b, a);
-	ft_printf("pb\n");
+	write(1, "pb\n", 3);
+	if (bench)
+	{
+		bench->pb_count++;
+		bench->total_ops++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 17:29:33 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/15 21:12:51 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/18 18:43:56 by saalagor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ static void	rotate(t_stack **stack)
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
 	first = *stack;
-	last = *stack;
-	while (last->next)
-		last = last->next;
+	last = ft_stacklast(*stack);
 	*stack = first->next;
 	(*stack)->prev = NULL;
 	first->next = NULL;
@@ -30,21 +28,42 @@ static void	rotate(t_stack **stack)
 	last->next = first;
 }
 
-void	ra(t_stack **a)
+void	ra(t_stack **a, t_bench *bench)
 {
+	if (!a || !*a || !(*a)->next)
+		return ;
 	rotate(a);
-	ft_printf("ra\n");
+	write(1, "ra\n", 3);
+	if (bench)
+	{
+		bench->ra_count++;
+		bench->total_ops++;
+	}
 }
 
-void	rb(t_stack **b)
+void	rb(t_stack **b, t_bench *bench)
 {
+	if (!b || !*b || !(*b)->next)
+		return ;
 	rotate(b);
-	ft_printf("rb\n");
+	write(1, "rb\n", 3);
+	if (bench)
+	{
+		bench->rb_count++;
+		bench->total_ops++;
+	}
 }
 
-void	rr(t_stack **a, t_stack **b)
+void	rr(t_stack **a, t_stack **b, t_bench *bench)
 {
+	if ((!a || !*a || !(*a)->next) && (!b || !*b || !(*b)->next))
+		return ;
 	rotate(a);
 	rotate(b);
-	ft_printf("rr\n");
+	write(1, "rr\n", 3);
+	if (bench)
+	{
+		bench->rr_count++;
+		bench->total_ops++;
+	}
 }
