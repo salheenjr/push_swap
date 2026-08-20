@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+         #
+#    By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 14:55:56 by saalagor          #+#    #+#              #
-#    Updated: 2026/08/19 13:01:18 by saalagor         ###   ########.fr        #
+#    Updated: 2026/08/20 10:23:25 by wchan-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ SRCS        = $(SRC_DIR)/main.c \
               $(SRC_DIR)/sorting/sort_small.c \
               $(SRC_DIR)/sorting/sort_simple.c \
               $(SRC_DIR)/sorting/sort_medium.c \
+              $(SRC_DIR)/sorting/sort_complex_utils_calculations.c \
+            $(SRC_DIR)/sorting/sort_complex_utils_operations.c \
               $(SRC_DIR)/sorting/sort_complex.c \
               $(SRC_DIR)/sorting/sort_adaptive.c \
               $(SRC_DIR)/bench/bench_print.c \

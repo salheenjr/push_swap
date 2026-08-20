@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
+/*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 11:41:12 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/19 13:04:54 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/20 10:13:10 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_stack
 {
 	int				value;
 	int				index;
+	int				unsorted_index;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }	t_stack;
@@ -94,6 +95,19 @@ t_stack	*find_max(t_stack *stack);
 int		get_pos(t_stack *stack, t_stack *target);
 void	assign_index(t_stack *a);
 double	get_disorder(t_stack *a);
+
+/* --- Sorting Utilities For Complex --- */
+void	assign_unsorted_index(t_stack *stack);
+t_stack	*find_target_b(int a_value, t_stack *b);
+int		count_node_cost(t_stack *a_current, t_stack *b, int size_a, int size_b);
+t_stack	*find_the_cheapest(t_stack *a, t_stack *b);
+t_stack	*find_target_a(int b_value, t_stack *a);
+void	rotate_a_until_target_top(t_stack **a, t_stack *target_a,
+			int size_a, t_bench *bench);
+void	rotate_b_until_target_top(t_stack **b, t_stack *target_b,
+			int size_b, t_bench *bench);
+void	sort_and_push_to_b(t_stack **a, t_stack **b, t_bench *bench);
+void	sort_and_push_to_a(t_stack **a, t_stack **b, t_bench *bench);
 
 /* --- Sorting Strategies --- */
 void	sort_3(t_stack **a, t_bench *bench);
