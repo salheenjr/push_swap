@@ -6,7 +6,7 @@
 #    By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 14:55:56 by saalagor          #+#    #+#              #
-#    Updated: 2026/08/20 10:29:07 by wchan-ha         ###   ########.fr        #
+#    Updated: 2026/08/20 14:01:18 by wchan-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,12 +33,14 @@ SRCS        = $(SRC_DIR)/main.c \
               $(SRC_DIR)/sorting/sort_small.c \
               $(SRC_DIR)/sorting/sort_simple.c \
               $(SRC_DIR)/sorting/sort_medium.c \
-              $(SRC_DIR)/sorting/sort_complex_utils_calculations.c \
-                $(SRC_DIR)/sorting/sort_complex_utils_operations.c \
+              $(SRC_DIR)/sorting/sort_complex_find_target.c \
+              $(SRC_DIR)/sorting/sort_complex_utils_calculate_cost.c \
+              $(SRC_DIR)/sorting/sort_complex_utils_push.c \
+              $(SRC_DIR)/sorting/sort_complex_utils_sortings.c \
               $(SRC_DIR)/sorting/sort_complex.c \
               $(SRC_DIR)/sorting/sort_adaptive.c \
               $(SRC_DIR)/bench/bench_print.c \
-	      $(SRC_DIR)/stack/stack_validation.c
+	            $(SRC_DIR)/stack/stack_validation.c
 
 OBJS        = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

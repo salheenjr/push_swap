@@ -6,7 +6,7 @@
 /*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 14:43:56 by wchan-ha          #+#    #+#             */
-/*   Updated: 2026/08/20 09:58:20 by wchan-ha         ###   ########.fr       */
+/*   Updated: 2026/08/20 14:12:49 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	sort_complex(t_stack **a, t_stack **b, t_bench *bench)
 	min_node = find_min(*a);
 	assign_unsorted_index(*a);
 	a_size = ft_stacksize(*a);
-	rotate_a_until_target_top(a, min_node, a_size, bench);
+	rotate_a_until_target_top(a, min_node, bench);
 }
