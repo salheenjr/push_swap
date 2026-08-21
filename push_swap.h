@@ -6,7 +6,7 @@
 /*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 11:41:12 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/20 14:26:04 by wchan-ha         ###   ########.fr       */
+/*   Updated: 2026/08/22 07:37:33 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef enum e_strategy
 typedef struct s_bench
 {
 	bool		bench_mode;
+	bool		not_write;
 	t_strategy	strategy;
 	const char	*strat_name;
 	double		disorder;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
+/*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 17:29:33 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/18 18:43:56 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/22 07:43:26 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	ra(t_stack **a, t_bench *bench)
 	if (!a || !*a || !(*a)->next)
 		return ;
 	rotate(a);
-	write(1, "ra\n", 3);
+	if (!bench->not_write)
+		write(1, "ra\n", 3);
 	if (bench)
 	{
 		bench->ra_count++;
@@ -46,7 +47,8 @@ void	rb(t_stack **b, t_bench *bench)
 	if (!b || !*b || !(*b)->next)
 		return ;
 	rotate(b);
-	write(1, "rb\n", 3);
+	if (!bench->not_write)
+		write(1, "rb\n", 3);
 	if (bench)
 	{
 		bench->rb_count++;
@@ -60,7 +62,8 @@ void	rr(t_stack **a, t_stack **b, t_bench *bench)
 		return ;
 	rotate(a);
 	rotate(b);
-	write(1, "rr\n", 3);
+	if (!bench->not_write)
+		write(1, "rr\n", 3);
 	if (bench)
 	{
 		bench->rr_count++;

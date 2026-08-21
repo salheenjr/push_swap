@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
+/*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 17:27:54 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/18 18:40:27 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/22 07:38:49 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	pa(t_stack **a, t_stack **b, t_bench *bench)
 	if (!b || !*b)
 		return ;
 	push(a, b);
-	write(1, "pa\n", 3);
+	if (!bench->not_write)
+		write(1, "pa\n", 3);
 	if (bench)
 	{
 		bench->pa_count++;
@@ -47,7 +48,8 @@ void	pb(t_stack **a, t_stack **b, t_bench *bench)
 	if (!a || !*a)
 		return ;
 	push(b, a);
-	write(1, "pb\n", 3);
+	if (!bench->not_write)
+		write(1, "pb\n", 3);
 	if (bench)
 	{
 		bench->pb_count++;

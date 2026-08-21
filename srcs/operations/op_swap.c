@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
+/*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 17:26:45 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/18 18:35:28 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/22 07:40:40 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	sa(t_stack **a, t_bench *bench)
 	if (!a || !*a || !(*a)->next)
 		return ;
 	swap(a);
-	write(1, "sa\n", 3);
+	if (!bench->not_write)
+		write(1, "sa\n", 3);
 	if (bench)
 	{
 		bench->sa_count++;
@@ -48,7 +49,8 @@ void	sb(t_stack **b, t_bench *bench)
 	if (!b || !*b || !(*b)->next)
 		return ;
 	swap(b);
-	write(1, "sb\n", 3);
+	if (!bench->not_write)
+		write(1, "sb\n", 3);
 	if (bench)
 	{
 		bench->sb_count++;
@@ -62,7 +64,8 @@ void	ss(t_stack **a, t_stack **b, t_bench *bench)
 		return ;
 	swap(a);
 	swap(b);
-	write(1, "ss\n", 3);
+	if (!bench->not_write)
+		write(1, "ss\n", 3);
 	if (bench)
 	{
 		bench->ss_count++;
