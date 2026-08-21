@@ -6,11 +6,13 @@
 #    By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 14:55:56 by saalagor          #+#    #+#              #
-#    Updated: 2026/08/20 14:01:18 by wchan-ha         ###   ########.fr        #
+#    Updated: 2026/08/21 13:04:02 by wchan-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        = push_swap
+BONUS_NAME  = checker
+
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -I. -I$(LIBFT_DIR)
 
@@ -22,8 +24,7 @@ HEADERS     = push_swap.h
 SRC_DIR     = srcs
 OBJ_DIR     = obj
 
-SRCS        = $(SRC_DIR)/main.c \
-              $(SRC_DIR)/operations/op_swap.c \
+SRCS        = $(SRC_DIR)/operations/op_swap.c \
               $(SRC_DIR)/operations/op_push.c \
               $(SRC_DIR)/operations/op_rotate.c \
               $(SRC_DIR)/operations/op_rev_rotate.c \
@@ -40,7 +41,11 @@ SRCS        = $(SRC_DIR)/main.c \
               $(SRC_DIR)/sorting/sort_complex.c \
               $(SRC_DIR)/sorting/sort_adaptive.c \
               $(SRC_DIR)/bench/bench_print.c \
-	            $(SRC_DIR)/stack/stack_validation.c
+              $(SRC_DIR)/stack/stack_validation.c
+
+MAIN        = $(SRC_DIR)/main.c
+
+BONUS_MAIN  = $(SRC_DIR)/checker.c
 
 OBJS        = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
@@ -54,7 +59,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(MAIN) $(LIBFT) -o $(NAME)
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -66,4 +71,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus:	$(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(BONUS_MAIN) $(LIBFT) -o $(BONUS_NAME)
+
+.PHONY: all clean fclean re bonus
