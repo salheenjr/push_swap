@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+         #
+#    By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/29 18:37:27 by saalagor          #+#    #+#              #
-#    Updated: 2026/08/15 16:04:28 by saalagor         ###   ########.fr        #
+#    Updated: 2026/08/22 08:31:43 by wchan-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
        ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
        ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
        ft_printf.c ft_printf_utils.c ft_print_nbr.c ft_print_unsigned.c \
-       ft_print_hex.c ft_print_ptr.c get_next_line.c \
+       ft_print_hex.c ft_print_ptr.c get_next_line_utils.c get_next_line.c \
 
 OBJS = $(SRCS:.c=.o)
 
