@@ -6,7 +6,7 @@
 /*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 15:50:59 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/19 12:11:31 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/20 19:56:34 by saalagor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,28 +48,39 @@ static int	parse_flags(int argc, char **argv, t_bench *bench)
 	return (i);
 }
 
+static void	handle_small_sort(t_stack **a, t_stack **b, t_bench *bench, int size)
+{
+	bench->strat_name = "Small Sort";
+	if (size == 2)
+		sort_2(a, bench);
+	else if (size == 3)
+		sort_3(a, bench);
+	else
+		sort_5(a, b, bench);
+}
+
 static void	execute_sort(t_stack **a, t_stack **b, t_bench *bench)
 {
 	int	size;
 
 	size = ft_stacksize(*a);
 	if (size <= 5)
-	{
-		bench->strat_name = "Small Sort";
-		if (size == 2)
-			sa(a, bench);
-		else if (size == 3)
-			sort_3(a, bench);
-		else
-			sort_5(a, b, bench);
-		return ;
-	}
+		return (handle_small_sort(a, b, bench, size));
 	if (bench->strategy == STRAT_SIMPLE)
-		(1 && (bench->strat_name = "Simple"), sort_simple(a, b, bench));
+	{
+		bench->strat_name = "Simple";
+		sort_simple(a, b, bench);
+	}
 	else if (bench->strategy == STRAT_MEDIUM)
-		(1 && (bench->strat_name = "Medium"), sort_medium(a, b, bench));
+	{
+		bench->strat_name = "Medium";
+		sort_medium(a, b, bench);
+	}
 	else if (bench->strategy == STRAT_COMPLEX)
-		(1 && (bench->strat_name = "Complex"), sort_complex(a, b, bench));
+	{
+		bench->strat_name = "Complex";
+		sort_complex(a, b, bench);
+	}
 	else
 		sort_adaptive(a, b, bench);
 }
