@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_complex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
+/*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 09:18:08 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/22 09:20:51 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/22 10:59:38 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	sort_complex(t_stack **a, t_stack **b, t_bench *bench)
 {
 	t_stack	*min_node;
-	int		a_size;
 
 	if (!a || !*a || !(*a)->next)
 		return ;
