@@ -6,11 +6,17 @@
 /*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 08:40:46 by wchan-ha          #+#    #+#             */
-/*   Updated: 2026/08/22 07:45:37 by wchan-ha         ###   ########.fr       */
+/*   Updated: 2026/08/22 08:46:15 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	ft_error(void)
+{
+	write (2, "Error\n", 6);
+	exit(EXIT_FAILURE);
+}
 
 static void	sort_based_on_arg(t_stack **a, t_stack **b,
 	char *operation, t_bench *bench)
@@ -39,7 +45,7 @@ static void	sort_based_on_arg(t_stack **a, t_stack **b,
 	else if (ft_strncmp(operation, "rrr\n", 4) == 0)
 		rrr(a, b, bench);
 	else
-		write (2, "Error\n", 6);
+		ft_error();
 }
 
 int	main(int argc, char **argv)
@@ -54,13 +60,12 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	init_stack_a(&a, argv + 1);
-	while (1)
+	line = get_next_line(0);
+	while (line)
 	{
-		line = get_next_line(0);
-		if (!line)
-			break ;
 		sort_based_on_arg(&a, &b, line, &bench);
 		free(line);
+		line = get_next_line(0);
 	}
 	if (is_sorted(a) && !b)
 		write (1, "OK\n", 3);
