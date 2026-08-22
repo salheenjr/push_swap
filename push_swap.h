@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
+/*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 09:17:13 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/22 09:17:21 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/22 11:04:45 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	sort_and_push_to_b(t_stack **a, t_stack **b, t_bench *bench);
 void	sort_and_push_to_a(t_stack **a, t_stack **b, t_bench *bench);
 
 /* --- Sorting Strategies --- */
+void	sort_2(t_stack **a, t_bench *bench);
 void	sort_3(t_stack **a, t_bench *bench);
 void	sort_5(t_stack **a, t_stack **b, t_bench *bench);
 void	sort_simple(t_stack **a, t_stack **b, t_bench *bench);
