@@ -6,7 +6,7 @@
 /*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 15:50:59 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/20 19:56:34 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/22 09:22:00 by saalagor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static int	parse_flags(int argc, char **argv, t_bench *bench)
 	return (i);
 }
 
-static void	handle_small_sort(t_stack **a, t_stack **b, t_bench *bench, int size)
+static void	handle_small_sort(t_stack **a, t_stack **b,
+		t_bench *bench, int size)
 {
 	bench->strat_name = "Small Sort";
 	if (size == 2)
