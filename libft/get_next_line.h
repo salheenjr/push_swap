@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
+/*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 11:10:39 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/14 11:17:42 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/22 08:29:47 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # endif
 
 char	*get_next_line(int fd);
+char	*ft_strjoin_get(char *stash, char *buffer);
 
 #endif

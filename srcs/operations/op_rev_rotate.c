@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_rev_rotate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
+/*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 12:43:57 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/15 21:13:14 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/22 07:39:41 by wchan-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ static void	rev_rotate(t_stack **stack)
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
-	last = *stack;
-	while (last->next)
-		last = last->next;
+	last = ft_stacklast(*stack);
 	second_last = last->prev;
 	second_last->next = NULL;
 	last->prev = NULL;
@@ -30,21 +28,45 @@ static void	rev_rotate(t_stack **stack)
 	*stack = last;
 }
 
-void	rra(t_stack **a)
+void	rra(t_stack **a, t_bench *bench)
 {
+	if (!a || !*a || !(*a)->next)
+		return ;
 	rev_rotate(a);
-	ft_printf("rra\n");
+	if (!bench->not_write)
+		write(1, "rra\n", 4);
+	if (bench)
+	{
+		bench->rra_count++;
+		bench->total_ops++;
+	}
 }
 
-void	rrb(t_stack **b)
+void	rrb(t_stack **b, t_bench *bench)
 {
+	if (!b || !*b || !(*b)->next)
+		return ;
 	rev_rotate(b);
-	ft_printf("rrb\n");
+	if (!bench->not_write)
+		write(1, "rrb\n", 4);
+	if (bench)
+	{
+		bench->rrb_count++;
+		bench->total_ops++;
+	}
 }
 
-void	rrr(t_stack **a, t_stack **b)
+void	rrr(t_stack **a, t_stack **b, t_bench *bench)
 {
+	if ((!a || !*a || !(*a)->next) && (!b || !*b || !(*b)->next))
+		return ;
 	rev_rotate(a);
 	rev_rotate(b);
-	ft_printf("rrr\n");
+	if (!bench->not_write)
+		write(1, "rrr\n", 4);
+	if (bench)
+	{
+		bench->rrr_count++;
+		bench->total_ops++;
+	}
 }
