@@ -6,7 +6,7 @@
 /*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 09:17:13 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/22 11:04:45 by wchan-ha         ###   ########.fr       */
+/*   Updated: 2026/08/22 15:44:29 by saalagor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_stack
 {
 	int				value;
 	int				index;
-	int				unsorted_index;
+	int				pos;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }	t_stack;
@@ -97,20 +97,12 @@ int		get_pos(t_stack *stack, t_stack *target);
 void	assign_index(t_stack *a);
 double	get_disorder(t_stack *a);
 
-/* --- Sorting Utilities For Complex --- */
-void	assign_unsorted_index(t_stack *stack);
-t_stack	*find_target_b(int a_value, t_stack *b);
-int		count_node_cost(t_stack *a_current, t_stack *b, int size_a, int size_b);
-t_stack	*find_the_cheapest(t_stack *a, t_stack *b);
-t_stack	*find_target_a(int b_value, t_stack *a);
-void	rotate_a_until_target_top(t_stack **a, t_stack *target_a,
-			t_bench *bench);
-void	rotate_b_until_target_top(t_stack **b, t_stack *target_b,
-			t_bench *bench);
-void	rotate_a_and_b_to_top(t_stack **a, t_stack **b,
-			t_stack *target_a, t_bench *bench);
-void	sort_and_push_to_b(t_stack **a, t_stack **b, t_bench *bench);
-void	sort_and_push_to_a(t_stack **a, t_stack **b, t_bench *bench);
+/* --- Turk Algorithm Utilities & Target Lookups (sort_complex_utils.c) --- */
+void	update_pos(t_stack *stack);
+t_stack	*get_target_b(t_stack *a_node, t_stack *b);
+t_stack	*get_target_a(t_stack *b_node, t_stack *a);
+t_stack	*get_cheapest_node(t_stack *a, t_stack *b);
+void	rotate_to_top(t_stack **s, t_stack *target, char name, t_bench *bench);
 
 /* --- Sorting Strategies --- */
 void	sort_2(t_stack **a, t_bench *bench);

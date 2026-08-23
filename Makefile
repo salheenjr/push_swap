@@ -6,7 +6,7 @@
 #    By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 14:55:56 by saalagor          #+#    #+#              #
-#    Updated: 2026/08/21 13:04:02 by wchan-ha         ###   ########.fr        #
+#    Updated: 2026/08/22 15:41:55 by saalagor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,10 +34,7 @@ SRCS        = $(SRC_DIR)/operations/op_swap.c \
               $(SRC_DIR)/sorting/sort_small.c \
               $(SRC_DIR)/sorting/sort_simple.c \
               $(SRC_DIR)/sorting/sort_medium.c \
-              $(SRC_DIR)/sorting/sort_complex_find_target.c \
-              $(SRC_DIR)/sorting/sort_complex_utils_calculate_cost.c \
-              $(SRC_DIR)/sorting/sort_complex_utils_push.c \
-              $(SRC_DIR)/sorting/sort_complex_utils_sortings.c \
+              $(SRC_DIR)/sorting/sort_complex_utils.c \
               $(SRC_DIR)/sorting/sort_complex.c \
               $(SRC_DIR)/sorting/sort_adaptive.c \
               $(SRC_DIR)/bench/bench_print.c \
