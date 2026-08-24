@@ -6,7 +6,7 @@
 #    By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 14:55:56 by saalagor          #+#    #+#              #
-#    Updated: 2026/08/22 15:41:55 by saalagor         ###   ########.fr        #
+#    Updated: 2026/08/24 09:40:26 by saalagor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(BONUS_NAME)
 	@make -C $(LIBFT_DIR) fclean
 
 re: fclean all

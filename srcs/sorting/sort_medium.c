@@ -6,19 +6,30 @@
 /*   By: saalagor <saalagor@student.42kl.edu.m      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 21:56:28 by saalagor          #+#    #+#             */
-/*   Updated: 2026/08/18 19:11:33 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/24 18:40:56 by saalagor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
+static int	ft_sqrt(int n)
+{
+	int	i;
+
+	if (n <= 0)
+		return (0);
+	i = 1;
+	while (i * i <= n)
+		i++;
+	return (i - 1);
+}
+
 static int	get_range(int size)
 {
-	if (size <= 100)
-		return (16);
-	if (size <= 500)
-		return (32);
-	return (45);
+	int	sqrt_val;
+
+	sqrt_val = ft_sqrt(size);
+	return (sqrt_val + (sqrt_val / 2));
 }
 
 static void	push_to_b(t_stack **a, t_stack **b, int range, t_bench *bench)
