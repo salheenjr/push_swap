@@ -6,7 +6,7 @@
 /*   By: wchan-ha <wchan-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 08:40:46 by wchan-ha          #+#    #+#             */
-/*   Updated: 2026/08/24 11:57:31 by saalagor         ###   ########.fr       */
+/*   Updated: 2026/08/25 10:30:51 by saalagor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void	ft_error(t_stack **a, t_stack **b)
 {
 	if (a)
-		free(a);
+		ft_free_stack(a);
 	if (b)
-		free(b);
+		ft_free_stack(b);
 	write (2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }

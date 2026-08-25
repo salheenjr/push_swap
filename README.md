@@ -12,20 +12,18 @@ Developed by **saalagor** and **wchan-ha** (Chan).
 2. [Rules & Allowed Operations](#2-rules--allowed-operations)
 3. [Key Features & Architecture Highlights](#3-key-features--architecture-highlights)
 4. [Algorithmic Strategy Breakdown](#4-algorithmic-strategy-breakdown)
-   * [Small Input Sets ($\le 5$ Elements)](#small-input-sets--5-elements)
-   * [Medium & Large Input Sets: Turk Sort Engine](#medium--large-input-sets-turk-sort-engine)
 5. [Turk Sort Algorithm: Step-by-Step Execution Flow](#5-turk-sort-algorithm-step-by-step-execution-flow)
 6. [Project Structure & Directory Architecture](#6-project-structure--directory-architecture)
 7. [Comprehensive File & Function Reference](#7-comprehensive-file--function-reference)
 8. [Building, Compilation & Execution](#8-building-compilation--execution)
-9. [Use of Artificial Intelligence (AI)](#9-use-of-artificial-intelligence-ai)
-10. [Bonus Features & Advanced CLI Flags](#10-bonus-features--advanced-cli-flags)
+9. [Resources & References](#9-resources--references)
+10. [Use of Artificial Intelligence (AI)](#10-use-of-artificial-intelligence-ai)
 11. [Performance Benchmarks & Evaluation Defense Guide](#11-performance-benchmarks--evaluation-defense-guide)
 12. [Author & License](#12-author--license)
 13. [Appendix & Supplementary Materials](#13-appendix--supplementary-materials)
 14. [Peer Evaluation Defense Checklist & Quick-Fix Guide](#14-peer-evaluation-defense-checklist--quick-fix-guide)
 15. [Project Revision History & Changelog](#15-project-revision-history--changelog)
-16. [Resources & References](#16-resources--references)
+16. [Bonus Part: Custom checker Verification Engine](#16-bonus-part-custom-checker-verification-engine)
 
 ---
 
@@ -1001,6 +999,143 @@ ARG=$(python3 -c "import random; print(' '.join(map(str, random.sample(range(-10
 | `v2.0.0` | Milestone 3 | Implemented Turk Algorithm ($O(N \log N)$), cost calculation functions, and target matchers. | Chan Hao |
 | `v2.1.0` | Milestone 4 | Added integrated `--bench` logger flag and custom `checker` verifier binary. | Chan Hao |
 | `v2.2.0` | Final Release | Final memory optimization, 100% Valgrind leak audit pass, and completed `README.md`. | Chan Hao |
+
+
+---
+
+## 16. Bonus Part: Custom `checker` Verification Engine
+
+The `checker` program is a custom validation utility designed to verify whether a given sequence of instructions correctly sorts Stack A without leaving remaining elements in Stack B or executing illegal moves.
+
+---
+
+### Key Technical Architecture
+
+```text
+                        ┌───────────────────────────────┐
+                        │   CLI Input Arguments ($ARG)  │
+                        └───────────────┬───────────────┘
+                                        │
+                                        ▼
+                        ┌───────────────────────────────┐
+                        │    init_stack_a(&a, argv)     │
+                        └───────────────┬───────────────┘
+                                        │ (Invalid input -> "Error\n" to stderr)
+                                        ▼
+                        ┌───────────────────────────────┐
+                        │  get_next_line(0) Reading     │ ◄── Instruction Stream
+                        │  Standard Input (stdin)       │     (e.g., pb, ra, rra)
+                        └───────────────┬───────────────┘
+                                        │
+                 ┌──────────────────────┴──────────────────────┐
+                 │                                             │
+      [Valid Operation Token]                       [Invalid Token]
+                 │                                             │
+                 ▼                                             ▼
+  Execute operation on stacks                  Call ft_error(a, b)
+  (bench->not_write = true)                    Print "Error\n" (fd 2) & Exit
+                 │
+                 ▼
+  Loop until EOF (line == NULL)
+                 │
+                 ▼
+  ┌─────────────────────────────┐
+  │ Check Final Stack States    │
+  └──────────────┬──────────────┘
+                 │
+        ┌────────┴────────┐
+        ▼                 ▼
+  [A Sorted & B == NULL]  [A Unsorted OR B != NULL]
+        │                 │
+        ▼                 ▼
+  Print "OK\n"           Print "KO\n"
+
+```
+
+---
+
+### Key Program Features
+
+1. **Stream Execution Engine (`get_next_line`)**
+Reads instruction strings line-by-line from standard input (`stdin`) until EOF, allowing seamless pipeline piping from `./push_swap` output.
+2. **Operation Output Suppression (`not_write = true`)**
+Reuses core stack primitives (`sa`, `pa`, `ra`, `rra`, etc.) while disabling text emission to `stdout` by setting `bench->not_write = true`.
+3. **Strict Error Isolation**
+Writes `"Error\n"` specifically to `stderr` (`fd = 2`) and exits immediately with non-zero failure if:
+* Any non-numeric, overflow, or duplicate values are provided in the input vector.
+* An unrecognized, blank, or improperly formatted instruction line is read from `stdin`.
+
+
+
+---
+
+### Command Line Usage & Pipeline Examples
+
+#### 1. Basic Verification with Manual Instruction Input
+
+Run `checker` directly with stack values, type operations into `stdin`, and press `Ctrl+D` (EOF) to evaluate:
+
+```bash
+$ ./checker 3 2 1 0
+rra
+pb
+sa
+rra
+pa
+OK
+
+```
+
+#### 2. Pipeline Integration with `push_swap`
+
+Pipe the standard output of `push_swap` directly into `checker` to evaluate overall sorting correctness:
+
+```bash
+$ ARG="4 67 3 1 23"; ./push_swap $ARG | ./checker $ARG
+OK
+
+```
+
+#### 3. Error Case Handling Demonstration
+
+* **Invalid Instruction Token:**
+```bash
+$ ./checker 3 2 1 0
+sa
+invalid_op
+Error
+
+```
+
+
+* **Invalid Input Vectors (Overflow / Non-numeric):**
+```bash
+$ ./checker 3 2 one 0
+Error
+
+```
+
+
+```bash
+$ ./checker "" 1
+Error
+
+```
+
+
+
+---
+
+### Execution Matrix & Expected Behavior
+
+| Input Vector ($ARG$) | Instruction Stream (`stdin`) | Result | Output Destination | Exit Status |
+| --- | --- | --- | --- | --- |
+| `3 2 1 0` | `rra\npb\nsa\nrra\npa\n` | `OK\n` | `stdout` (`fd 1`) | `0` |
+| `3 2 1 0` | `sa\nrra\npb\n` | `KO\n` | `stdout` (`fd 1`) | `0` |
+| *(None / Empty)* | *(Any)* | *(Silent)* | None | `0` |
+| `3 2 1 0` | `sa\nfoo\n` | `Error\n` | `stderr` (`fd 2`) | `1` (Failure) |
+| `2147483648` | *(None)* | `Error\n` | `stderr` (`fd 2`) | `1` (Failure) |
+| `3 2 2 1` | *(None)* | `Error\n` | `stderr` (`fd 2`) | `1` (Failure) |
 
 ---
 
