@@ -4,6 +4,11 @@ An optimized, highly efficient stack-sorting algorithm built in C for the **42 N
 
 Developed by **saalagor** and **wchan-ha** (Chan).
 
+## Team
+
+- Salheen Jr — @salheenjr
+- Chanhao — @chanhao2016-maker
+
 ---
 
 ## Table of Contents
